@@ -1,0 +1,92 @@
+import tkinter as tk, pyautogui, time
+
+root = tk.Tk()
+
+# cria a janela
+root.title("minha janela") # Define o título da janela
+root.geometry("400x300") # Define as dimensões da janela
+
+# criar uma caixa de texto
+label = tk.Label(root, text="nome ou numero:", font=("Arial", 11))
+label.pack()
+entry = tk.Entry(root)
+entry.pack()
+label1 = tk.Label(root, text="apelido:", font=("Arial", 11))
+label1.pack()
+entry1 = tk.Entry(root)
+entry1.pack()
+
+# definir função para adicionar a informação em um nome
+def add_to_nome():
+    global p
+    p.append(entry.get())
+    entry.delete(0, tk.END)
+
+    a.append(entry1.get())
+    entry1.delete(0, tk.END)
+
+# criar botão para adicionar informação no array
+button = tk.Button(root, text="Adicionar a pessoa", command=add_to_nome)
+button.pack(pady=12,)
+
+
+#mensagem
+label2 = tk.Label(root, text="mensagem antes do apelido", font=("Arial", 11))
+label2.pack()
+entry2 = tk.Entry(root, width=45)
+entry2.pack()
+label3 = tk.Label(root, text="mensagem depois do apelido", font=("Arial", 11))
+label3.pack()
+entry3 = tk.Entry(root, width=55)
+entry3.pack()
+
+# definir função para adicionar a informação da mensagem
+def add_to_mensagem():
+    global m
+    ma.append(entry2.get())
+    entry2.delete(0, tk.END)
+
+    md.append(entry3.get())
+    entry3.delete(0, tk.END)
+
+# criar botão para adicionar informação no array
+button = tk.Button(root, text="Adicionar mensagem", command=add_to_mensagem)
+button.pack(pady=12,)
+# array para armazenar as informações da caixa de texto
+p = []
+a = []
+ma = []
+md = []
+
+root.mainloop()
+#o nome das pessoas e o array da ultima pessoa o array da primeira começa no 0
+# print(p)
+# print(a)
+# print(ma)
+# print(md)
+i = 0
+np = len(p)-1
+pyautogui.press('win')
+time.sleep(2)
+pyautogui.write('whats',0.18)
+pyautogui.press('enter')
+time.sleep(3)
+while i <= np:
+        pyautogui.hotkey('ctrl','f')
+        time.sleep(0.5)
+        pyautogui.hotkey('ctrl','a')
+        time.sleep(0.5)
+        pyautogui.write(p[i],0.40)
+        time.sleep(1.5)
+        pyautogui.press('tab')
+        time.sleep(0.75)
+        pyautogui.press('enter')
+        time.sleep(1)
+        pyautogui.hotkey('ctrl','a')
+        time.sleep(0.5)
+        pyautogui.write(ma[0],0.15)
+        pyautogui.write(" "+a[i]+" ",0.15)
+        pyautogui.write(md[0],0.15)
+        time.sleep(1)
+        #pyautogui.press('enter')
+        i += 1
