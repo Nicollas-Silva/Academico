@@ -1,0 +1,76 @@
+import turtle, math
+
+# Definir a tela como fullScreen
+turtle.Screen().setup(width=1.0,height=1.0)
+
+# Definir escritor
+lapis = turtle.Turtle()
+lapis.penup()
+lapis.hideturtle()
+lapis.goto(-235, 175)
+lapis.write("Algumas pessoas acham que a rotação da lua é assim: rota preta", font=12)
+
+# Definindo terra e lua
+lua = turtle.Turtle()
+terra = turtle.Turtle()
+
+#customizando terra e lua
+
+terra.color("blue")
+terra.shape("circle")
+terra.shapesize(4)
+lua.shape("circle")
+lua.shapesize(1)
+lua.color("black")
+speed = 2 
+lua.speed(speed)
+
+class rotalua():
+
+    def real(x,y):
+        # Configurações iniciais da lua
+        a = 115.71 #raio maior
+        b = 102.86 #raio menor
+        lua.pencolor("red")
+        lapis.goto(-115, 135)
+        lapis.write("Mas é assim: rota vermelha",font=12)
+        # Desenhar
+        for angle in range(0,720,speed):
+            # Converter graus para radianos
+            radian_angle = math.radians(angle)
+
+            x = a * math.cos(radian_angle)-20
+            y = b * math.sin(radian_angle)
+            if angle == 0:
+                lua.penup()
+                lua.goto(x,y)
+            else:
+                lua.pendown()
+                lua.goto(x,y)
+
+        lapis.goto(-110,-145)
+        lapis.write("Chamamos de curva elíptica", font=12)
+
+    def media(x,y):
+        # Configurações iniciais da lua
+        a = 109.83 #raio maior
+        b = 109.83 #raio menor
+        lua.pencolor("black")
+
+        # Desenhar
+        for angle in range(0,720,speed):
+            # Converter graus para radianos
+            radian_angle = math.radians(angle)
+
+            x = a * math.cos(radian_angle)
+            y = b * math.sin(radian_angle)
+            if angle == 0:
+                lua.penup()
+                lua.goto(x,y)
+            else:
+                lua.pendown()
+                lua.goto(x,y)
+
+terra.onclick(rotalua.media,btn=1)
+terra.onclick(rotalua.real, btn=3)
+turtle.done()
